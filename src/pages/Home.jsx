@@ -1,8 +1,10 @@
 import React from 'react';
 import pokemonLogo from '../images/pokemonLogo.png';
+import { useHistory } from 'react-router';
 
 export default function Home() {
   const appDescription = "Esse app tem como objetivo renderizar uma lista de pokémon e poder interagir com ela, adicionando cada pokémon aos seus favoritos ou removê-los da sua lista."
+  const history = useHistory();
   return (
     <div className="hero-home">
 
@@ -16,7 +18,7 @@ export default function Home() {
 
       <section className="button-home">
         <span>Clique no botão para começar sua experiência!</span>
-        <button type="button">Pokémon</button>
+        <button type="button" onClick={ () => history.push('/list') }>Pokémon</button>
       </section>
 
     </div>
