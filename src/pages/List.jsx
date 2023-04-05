@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 export default function List() {
   const [pokemonList, setPokemonList] = useState([]);
   const { globalState, setGlobalState } = useContext(Context);
-  const favoriteIcon = whiteHeart;
 
   useEffect(() => {
     const localStorage = getLocalStorage('favorites');
@@ -67,8 +66,8 @@ export default function List() {
   return (
     <div className="hero-list">
       <header className='header-list'>
-        <Link id="linkToHome" to="/">Home</Link>
         <h2 id="heading-list">Lista</h2>
+        <Link id="linkToHome" to="/">Back to Home</Link>
       </header>
       {pokemonList?.map((pokemon) => (
         <div className="pokemon-card" key={pokemon.name}>
@@ -82,7 +81,7 @@ export default function List() {
           <div className="pokemon-card" key={pokemon.name}>
             <img className="pokemon-images" src={pokemon.sprite} alt={pokemon.name} />
             <h1>{pokemon.name}</h1>
-            <button value={pokemon.name} onClick={ setFavorites }><img src={ globalState.favorites.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } alt={`Botão de favoritar do ${pokemon.name}`}/>Favoritar</button>
+            <button value={pokemon.name} onClick={ setFavorites }>Desfavoritar</button>
           </div>
         ))}
       </div>
