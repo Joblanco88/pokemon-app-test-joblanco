@@ -45,6 +45,10 @@ code {
   margin-bottom: 20px;
 }
 
+.button-home button {
+  margin-bottom: 20px;
+}
+
 .welcome-home {
   align-items: center;
   display: flex;
