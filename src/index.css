@@ -79,12 +79,23 @@ code {
   background-color: black;
   color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: 6vh;
-  justify-content: center;
+  justify-content: space-around;
   margin: 0;
   text-align: center;
   width: 100%;
+}
+
+#linkToHome {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: solid;
+}
+
+#heading-list {
+  font-size: 28px;
 }
 
 .hero-list {
