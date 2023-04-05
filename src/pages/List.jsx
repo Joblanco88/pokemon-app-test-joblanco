@@ -31,7 +31,7 @@ export default function List() {
     getData();
   }, []);
 
-  const setFavorites = ({target: {value, alt}}) => {
+  const setFavorites = ({ value, alt }) => {
     const localStorage = getLocalStorage('favorites');
     if (value) {
       const boolean = localStorage.some((pokemon) => pokemon.name === value);
@@ -73,7 +73,19 @@ export default function List() {
         <div className="pokemon-card" key={pokemon.name}>
           <img className="pokemon-images" src={pokemon.sprite} alt={pokemon.name} />
           <h1>{pokemon.name}</h1>
-          <button value={pokemon.name} onClick={ setFavorites }><img src={ globalState.favorites?.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } alt={`Botão de favoritar do ${pokemon.name}`}/>Favoritar</button>
+          <button 
+            value={pokemon.name} 
+            onClick={ ({target}) => {
+              const localStorage = getLocalStorage('favorites');
+              if (!localStorage) saveLocalStorage('favorites', []);
+              setFavorites(target);
+            } }
+          >
+            <img
+              src={ globalState.favorites?.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } 
+              alt={`Botão de favoritar do ${pokemon.name}`}/>
+            Favoritar
+          </button>
         </div>
       ))}
       <div className="favorites-list">
