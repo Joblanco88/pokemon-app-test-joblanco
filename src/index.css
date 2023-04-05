@@ -71,3 +71,24 @@ code {
 #appDescription {
   width: 40%;
 }
+
+/* List Styles - below */
+
+.hero-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pokemon-card {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 25vh;
+  flex-direction: column;
+  width: 20%;
+}
+
+.pokemon-images {
+  width: 30%;
+}
