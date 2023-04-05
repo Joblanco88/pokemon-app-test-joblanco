@@ -19,7 +19,7 @@ code {
   height: 100vh;
 }
 
-.header-main {
+.header-home {
   align-items: center;
   background-color: black;
   color: white;
@@ -70,4 +70,61 @@ code {
 
 #appDescription {
   width: 40%;
+}
+
+/* List Styles - below */
+
+.header-list {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 6vh;
+  justify-content: space-around;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+#linkToHome {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: solid;
+}
+
+#heading-list {
+  font-size: 36px;
+}
+
+.hero-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pokemon-card {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 25vh;
+  flex-direction: column;
+  width: 20%;
+}
+
+.pokemon-images {
+  height: 10vh;
+  width: 30%;
+}
+
+.favorites-list {
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  height: 50vh;
+  width: 100%;
 }
