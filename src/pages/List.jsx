@@ -73,7 +73,7 @@ export default function List() {
         <div className="pokemon-card" key={pokemon.name}>
           <img className="pokemon-images" src={pokemon.sprite} alt={pokemon.name} />
           <h1>{pokemon.name}</h1>
-          <button value={pokemon.name} onClick={ setFavorites }><img src={ globalState.favorites.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } alt={`Botão de favoritar do ${pokemon.name}`}/>Favoritar</button>
+          <button value={pokemon.name} onClick={ setFavorites }><img src={ globalState.favorites?.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } alt={`Botão de favoritar do ${pokemon.name}`}/>Favoritar</button>
         </div>
       ))}
       <div className="favorites-list">
