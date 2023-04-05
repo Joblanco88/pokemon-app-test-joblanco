@@ -19,7 +19,7 @@ code {
   height: 100vh;
 }
 
-.header-main {
+.header-home {
   align-items: center;
   background-color: black;
   color: white;
@@ -74,6 +74,19 @@ code {
 
 /* List Styles - below */
 
+.header-list {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  height: 6vh;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
 .hero-list {
   display: flex;
   flex-wrap: wrap;
@@ -90,5 +103,17 @@ code {
 }
 
 .pokemon-images {
+  height: 10vh;
   width: 30%;
+}
+
+.favorites-list {
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  height: 50vh;
+  width: 100%;
 }

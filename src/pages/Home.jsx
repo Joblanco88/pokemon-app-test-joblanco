@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="hero-home">
 
-      <header className='header-main'>Home</header>
+      <header className='header-home'>Home</header>
 
       <section className="welcome-home">
         <h1 id="welcomeHeading">Bem Vindo ao App Teste com tema do Pokémon!</h1>
