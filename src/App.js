@@ -3,13 +3,16 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import List from './pages/List';
+import Provider from './context/Provider';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/" component={ Home } />
-      <Route exact path="/list" component={ List } />
-    </Switch>
+    <Provider>
+      <Switch>
+        <Route exact path="/" component={ Home } />
+        <Route exact path="/list" component={ List } />
+      </Switch>
+    </Provider>
   );
 }
 
