@@ -1,7 +1,6 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { renderWithRouter } from './helpers/renderWith';
-import List from './pages/List';
 import { act } from 'react-dom/test-utils';
 
 describe('renders learn react link', () => {
@@ -13,7 +12,7 @@ describe('renders learn react link', () => {
       name: /bem vindo ao app teste com tema do pokémon!/i
     });
     const description = screen.getByRole('heading', {
-      name: /esse app tem como objetivo renderizar uma lista de pokémon e poder interagir com ela, adicionando cada pokémon aos seus favoritos ou removê\-los da sua lista\./i
+      name: /esse app tem como objetivo renderizar uma lista de pokémon e poder interagir com ela, adicionando cada pokémon aos seus favoritos ou removê-los da sua lista\./i
     })
     const button = screen.getByRole('button', { name: 'Pokémon'});
     const links = screen.getByText(/clique no botão ou no link para começar sua experiência!/i);
@@ -39,11 +38,21 @@ describe('renders learn react link', () => {
     expect(pathname).toBe('/list');
 
   });
-  test('Verifica os elementos principais na tela List', () => {
+  test('Verifica os elementos principais na tela List', async () => {
     const { history } = renderWithRouter(<App />);
-    act(() => {
+
+    await waitFor(() => {
       history.push('/list');
-    })
-    expect(history.location.pathname).toBe('/list');
+      expect(history.location.pathname).toBe('/list');
+    });
+    await waitFor(() => {
+      const allPoke = screen.getAllByTestId('card-pokemon');
+      expect(allPoke).toHaveLength(20);
+    });
+
+    const listTitle = screen.getByText('Lista');
+    const linkHome = screen.getByRole('link', { name: 'Back to Home'});
+    expect(listTitle).toBeInTheDocument();
+    expect(linkHome).toBeInTheDocument();
   })
 });
