@@ -54,5 +54,18 @@ describe('renders learn react link', () => {
     const linkHome = screen.getByRole('link', { name: 'Back to Home'});
     expect(listTitle).toBeInTheDocument();
     expect(linkHome).toBeInTheDocument();
+  });
+  test('Verifica os pokémon favoritos', async () => {
+    const { history } = renderWithRouter(<App />);
+    await waitFor(() => {
+      history.push('/list');
+      const bulbasaur = screen.getByRole('button', { value: 'bulbasaur' });
+      expect(bulbasaur).toBeInTheDocument();
+    });
+    // fireEvent.click(screen.getByRole('button', { value: 'bulbasaur' }));
+    await waitFor(() => {
+      const favoritePokemon = screen.getByTestId('unfavorite-bulbasaur');
+      expect(favoritePokemon).toBeInTheDocument();
+    });
   })
 });

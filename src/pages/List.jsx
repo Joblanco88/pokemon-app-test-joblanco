@@ -134,6 +134,7 @@ export default function List() {
             <h1>{pokemon.name}</h1>
             <button
               value={pokemon.name}
+              data-testid={`unfavorite-${pokemon.name}`}
               onClick={({ target }) => {
                 const localStorage = getLocalStorage("favorites");
                 if (!localStorage) saveLocalStorage("favorites", []);
