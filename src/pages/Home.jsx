@@ -1,5 +1,5 @@
 import React from 'react';
-import pokemonLogo from '../images/pokemonLogo.png';
+import pokemonLogo from '@/images/pokemonLogo.png';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
