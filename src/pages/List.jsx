@@ -31,8 +31,10 @@ export default function List() {
     getData();
   }, []);
 
-  const setFavorites = ({target: {value, alt}}) => {
+  const setFavorites = ({ value, alt }) => {
     const localStorage = getLocalStorage('favorites');
+    console.log(value);
+    console.log(alt);
     if (value) {
       const boolean = localStorage.some((pokemon) => pokemon.name === value);
       if (boolean) {
@@ -47,8 +49,8 @@ export default function List() {
         global.alert('Favorito salvo com sucesso!');
       }
     } else {
-      const pokemonName = alt.split(' ');
-      const pokeAlt = pokemonName.pop();
+      const pokemonName = alt?.split(' ');
+      const pokeAlt = pokemonName?.pop();
       const boolean = localStorage.some((pokemon) => pokemon.name === pokeAlt);
       if (boolean) {
         const array = localStorage.filter((pokemon) => pokemon.name !== pokeAlt);
@@ -73,7 +75,19 @@ export default function List() {
         <div className="pokemon-card" key={pokemon.name}>
           <img className="pokemon-images" src={pokemon.sprite} alt={pokemon.name} />
           <h1>{pokemon.name}</h1>
-          <button value={pokemon.name} onClick={ setFavorites }><img src={ globalState.favorites.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } alt={`Botão de favoritar do ${pokemon.name}`}/>Favoritar</button>
+          <button 
+            value={pokemon.name} 
+            onClick={ ({target}) => {
+              const localStorage = getLocalStorage('favorites');
+              if (!localStorage) saveLocalStorage('favorites', []);
+              setFavorites(target);
+            } }
+          >
+            <img
+              src={ globalState.favorites?.some((favorite) => favorite.name === pokemon.name) ? blackHeart : whiteHeart } 
+              alt={`Botão de favoritar do ${pokemon.name}`}/>
+            Favoritar
+          </button>
         </div>
       ))}
       <div className="favorites-list">
@@ -81,7 +95,11 @@ export default function List() {
           <div className="pokemon-card" key={pokemon.name}>
             <img className="pokemon-images" src={pokemon.sprite} alt={pokemon.name} />
             <h1>{pokemon.name}</h1>
-            <button value={pokemon.name} onClick={ setFavorites }>Desfavoritar</button>
+            <button value={pokemon.name} onClick={ ({target}) => {
+              const localStorage = getLocalStorage('favorites');
+              if (!localStorage) saveLocalStorage('favorites', []);
+              setFavorites(target);
+            } }>Desfavoritar</button>
           </div>
         ))}
       </div>
