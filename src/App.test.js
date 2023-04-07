@@ -1,9 +1,14 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import { renderWithRouter } from './helpers/renderWith';
-import { act } from 'react-dom/test-utils';
 
 describe('renders learn react link', () => {
+  const handleClick = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('Verifica se existe os elementos principais na tela Home', () => {
     const { history } = renderWithRouter(<App />);
 
@@ -57,15 +62,16 @@ describe('renders learn react link', () => {
   });
   test('Verifica os pokémon favoritos', async () => {
     const { history } = renderWithRouter(<App />);
+    localStorage.setItem('favorites', '[]');
     await waitFor(() => {
       history.push('/list');
-      const bulbasaur = screen.getByRole('button', { value: 'bulbasaur' });
-      expect(bulbasaur).toBeInTheDocument();
     });
-    // fireEvent.click(screen.getByRole('button', { value: 'bulbasaur' }));
-    await waitFor(() => {
-      const favoritePokemon = screen.getByTestId('unfavorite-bulbasaur');
-      expect(favoritePokemon).toBeInTheDocument();
-    });
+    const bulbasaur = await screen.findByRole('button', { value: 'bulbasaur' });
+    expect(bulbasaur).toBeInTheDocument();
+    fireEvent.click(bulbasaur);
+    expect(handleClick).toHaveBeenCalled();
+    console.log(localStorage.getItem('favorites'));
+    const favoritePokemon = await screen.findByTestId('unfavorite-bulbasaur');
+    expect(favoritePokemon).toBeInTheDocument();
   })
 });
