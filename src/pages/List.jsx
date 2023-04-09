@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { fetchAllPokemon, fetchPokemon } from "@/helpers/api";
-import blackHeart from "@/images/blackHeartIcon.svg";
-import whiteHeart from "@/images/whiteHeartIcon.svg";
-import { getLocalStorage, saveLocalStorage } from "@/helpers/storage";
-// import Context from "../context/Context";
-import Context from "@/context/Context";
+import { fetchAllPokemon, fetchPokemon } from "@services/api";
+import blackHeart from "@images/blackHeartIcon.svg";
+import whiteHeart from "@images/whiteHeartIcon.svg";
+import { getLocalStorage, saveLocalStorage } from "@services/storage";
+import Context from "@context/Context";
 import { Link } from "react-router-dom";
 
 export default function List() {

@@ -6,7 +6,8 @@ const jestConfig = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@pages/(.*)$": "<rootDir>/src/pages/$1",
     "^@context/(.*)$": "<rootDir>/src/context/$1",
-    "^@images/(.*)$": "<rootDir>/src/images/$1",
+    "^@assets/(.*)$": "<rootDir>/src/assets/$1",
+    "^@images/(.*)$": "<rootDir>/src/assets/images/$1",
     "^@helpers/(.*)$": "<rootDir>/src/helpers/$1"
   }
 };
@@ -17,10 +18,11 @@ module.exports = {
   webpack: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@pages': path.resolve(__dirname, 'pages'),
-      '@context': path.resolve(__dirname, 'context'),
-      '@images': path.resolve(__dirname, 'images'),
-      '@helpers': path.resolve(__dirname, 'helpers'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@images': path.resolve(__dirname, 'src/assets/images'),
+      '@context': path.resolve(__dirname, 'src/context'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
     },
   },
 };
