@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const jestConfig = {
   verbose: true,
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
@@ -6,21 +6,24 @@ const jestConfig = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@pages/(.*)$": "<rootDir>/src/pages/$1",
     "^@context/(.*)$": "<rootDir>/src/context/$1",
-    "^@images/(.*)$": "<rootDir>/src/images/$1",
-    "^@helpers/(.*)$": "<rootDir>/src/helpers/$1"
-  }
+    "^@assets/(.*)$": "<rootDir>/src/assets/$1",
+    "^@images/(.*)$": "<rootDir>/src/assets/images/$1",
+    "^@helpers/(.*)$": "<rootDir>/src/helpers/$1",
+  },
 };
-
 
 module.exports = {
   jest: { configure: jestConfig },
   webpack: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@pages': path.resolve(__dirname, 'pages'),
-      '@context': path.resolve(__dirname, 'context'),
-      '@images': path.resolve(__dirname, 'images'),
-      '@helpers': path.resolve(__dirname, 'helpers'),
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@images": path.resolve(__dirname, "src/assets/images"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@context": path.resolve(__dirname, "src/context"),
+      "@helpers": path.resolve(__dirname, "src/helpers"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@services": path.resolve(__dirname, "src/services"),
     },
   },
 };
