@@ -3,6 +3,7 @@ import { fetchAllPokemon, fetchPokemon } from "@services/api";
 import blackHeart from "@images/blackHeartIcon.svg";
 import whiteHeart from "@images/whiteHeartIcon.svg";
 import { getLocalStorage, saveLocalStorage } from "@services/storage";
+import { UseCheckFavoritePoke, UseAlert } from "@helpers/listHelpers";
 import Context from "@context/Context";
 import { Link } from "react-router-dom";
 
@@ -35,48 +36,35 @@ export default function List() {
     getData();
   }, []);
 
-  const setFavorites = ({ value, alt }) => {
-    const localStorage = getLocalStorage("favorites");
-    console.log(value);
-    console.log(alt);
-    if (value) {
-      const boolean = localStorage.some((pokemon) => pokemon.name === value);
-      if (boolean) {
-        const array = localStorage.filter((pokemon) => pokemon.name !== value);
-        saveLocalStorage("favorites", array);
-        setGlobalState({ favorites: array });
-        global.alert("Favorito removido com sucesso!");
-      } else {
-        const array = [
-          ...pokemonList.filter((pokemon) => pokemon.name === value),
-          ...localStorage,
-        ];
-        saveLocalStorage("favorites", array);
-        setGlobalState({ favorites: array });
-        global.alert("Favorito salvo com sucesso!");
-      }
+  const filterPokemon = (checkFavorites, storage, value) => {
+    if (checkFavorites) {
+      return storage.filter((pokemon) => pokemon.name !== value);
     } else {
-      const pokemonName = alt?.split(" ");
-      const pokeAlt = pokemonName?.pop();
-      const boolean = localStorage.some((pokemon) => pokemon.name === pokeAlt);
-      if (boolean) {
-        const array = localStorage.filter(
-          (pokemon) => pokemon.name !== pokeAlt
-        );
-        saveLocalStorage("favorites", array);
-        setGlobalState({ favorites: array });
-        global.alert("Favorito removido com sucesso!");
-      } else {
-        const array = [
-          ...pokemonList.filter((pokemon) => pokemon.name === pokeAlt),
-          ...localStorage,
-        ];
-        saveLocalStorage("favorites", array);
-        setGlobalState({ favorites: array });
-        global.alert("Favorito salvo com sucesso!");
-      }
+      return [
+        ...pokemonList.filter((pokemon) => pokemon.name === value),
+        ...storage,
+      ];
     }
   };
+
+  const setFavorites = ({ value, alt }) => {
+    const localStorage = getLocalStorage("favorites");
+    if (value) {
+      const boolean = UseCheckFavoritePoke(localStorage, value);
+      const filteredPoke = filterPokemon(boolean, localStorage, value);
+      saveLocalStorage("favorites", filteredPoke);
+      setGlobalState({ favorites: filteredPoke });
+      UseAlert(!boolean);
+    } else {
+      const pokemonName = alt.split(" ").pop();
+      const boolean = UseCheckFavoritePoke(localStorage, pokemonName);
+      const filteredPoke = filterPokemon(boolean, localStorage, pokemonName);
+      saveLocalStorage("favorites", filteredPoke);
+      setGlobalState({ favorites: filteredPoke });
+      UseAlert(!boolean);
+    }
+  };
+
   return (
     <div className="hero-list">
       <header className="header-list">
