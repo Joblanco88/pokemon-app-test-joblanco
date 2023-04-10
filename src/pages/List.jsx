@@ -11,27 +11,26 @@ export default function List() {
   const [pokemonList, setPokemonList] = useState([]);
   const { globalState, setGlobalState } = useContext(Context);
 
+  const getPokeWithIcons = async () => {
+    const { results } = await fetchAllPokemon();
+    return await Promise.all(
+      results.map(async (result) => {
+        const {
+          sprites: { other },
+        } = await fetchPokemon(result.name);
+        return {
+          ...result,
+          sprite: other.dream_world.front_default,
+        };
+      })
+    );
+  };
+
   useEffect(() => {
     const localStorage = getLocalStorage("favorites");
     if (!localStorage) saveLocalStorage("favorites", []);
     setGlobalState({ favorites: localStorage });
-    const getData = async () => {
-      const allPokemon = await fetchAllPokemon();
-      const { results } = allPokemon;
-      const arrayPokemon = await Promise.all(
-        results.map(async (result) => {
-          const eachPokemon = await fetchPokemon(result.name);
-          const {
-            dream_world: { front_default },
-          } = eachPokemon.sprites.other;
-          return {
-            ...result,
-            sprite: front_default,
-          };
-        })
-      );
-      setPokemonList(arrayPokemon);
-    };
+    const getData = async () => setPokemonList(await getPokeWithIcons());
 
     getData();
   }, []);
