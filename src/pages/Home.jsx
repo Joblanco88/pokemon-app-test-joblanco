@@ -1,7 +1,7 @@
 import React from "react";
-import pokemonLogo from "@images/pokemonLogo.png";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import pokemonLogo from "@images/pokemonLogo.png";
 import Header from "@components/Header";
 
 export default function Home() {

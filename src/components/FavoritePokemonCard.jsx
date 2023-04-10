@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import blackHeart from "@images/blackHeartIcon.svg";
-import whiteHeart from "@images/whiteHeartIcon.svg";
 import { getLocalStorage, saveLocalStorage } from "@services/storage";
 import { UseCheckFavoritePoke, UseAlert } from "@helpers/listHelpers";
 import Context from "@context/Context";
 
-export default function PokemonCard({ pokemon, pokemonList }) {
-  const { globalState, setGlobalState } = useContext(Context);
+export default function FavoritePokemonCard({ pokemon, pokemonList }) {
+  const { setGlobalState } = useContext(Context);
 
   const filterPokemon = (checkFavorites, storage, value) => {
     if (checkFavorites) {
@@ -38,28 +36,23 @@ export default function PokemonCard({ pokemon, pokemonList }) {
   };
 
   return (
-    <div className="pokemon-card" data-testid="card-pokemon" key={pokemon.name}>
+    <div
+      className="pokemon-card"
+      data-testid="card-pokemon-favorites"
+      key={pokemon.name}
+    >
       <img className="pokemon-image" src={pokemon.sprite} alt={pokemon.name} />
       <h1>{pokemon.name}</h1>
       <button
         value={pokemon.name}
+        data-testid={`unfavorite-${pokemon.name}`}
         onClick={({ target }) => {
           const localStorage = getLocalStorage("favorites");
           if (!localStorage) saveLocalStorage("favorites", []);
           setFavorites(target);
         }}
       >
-        <img
-          src={
-            globalState.favorites?.some(
-              (favorite) => favorite.name === pokemon.name
-            )
-              ? blackHeart
-              : whiteHeart
-          }
-          alt={`Botão de favoritar do ${pokemon.name}`}
-        />
-        Favoritar
+        Desfavoritar
       </button>
     </div>
   );
