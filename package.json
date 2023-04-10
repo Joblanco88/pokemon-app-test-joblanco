@@ -9,7 +9,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
-    "craco": "^6.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,6 +41,8 @@
     "@stryker-mutator/html-reporter": "^3.1.0",
     "@stryker-mutator/javascript-mutator": "^4.0.0",
     "@stryker-mutator/jest-runner": "^6.4.2",
+    "craco": "^0.0.3",
+    "prettier": "^2.8.7",
     "react-app-rewired": "^2.2.1"
   }
 }
