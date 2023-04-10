@@ -5,7 +5,7 @@ import whiteHeart from "@images/whiteHeartIcon.svg";
 import { getLocalStorage, saveLocalStorage } from "@services/storage";
 import { UseCheckFavoritePoke, UseAlert } from "@helpers/listHelpers";
 import Context from "@context/Context";
-import { Link } from "react-router-dom";
+import Header from "@components/Header";
 
 export default function List() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -67,12 +67,7 @@ export default function List() {
 
   return (
     <div className="hero-list">
-      <header className="header-list">
-        <h2 id="heading-list">Lista</h2>
-        <Link id="linkToHome" to="/">
-          Back to Home
-        </Link>
-      </header>
+      <Header title="Lista" />
       {pokemonList?.map((pokemon) => (
         <div
           className="pokemon-card"

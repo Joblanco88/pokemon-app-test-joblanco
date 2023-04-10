@@ -2,6 +2,7 @@ import React from "react";
 import pokemonLogo from "@images/pokemonLogo.png";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import Header from "@components/Header";
 
 export default function Home() {
   const appDescription =
@@ -9,8 +10,7 @@ export default function Home() {
   const history = useHistory();
   return (
     <div className="hero-home">
-      <header className="header-home">Home</header>
-
+      <Header title="Home" />
       <section className="welcome-home">
         <h1 id="welcomeHeading">Bem Vindo ao App Teste com tema do Pokémon!</h1>
         <img id="pokemonLogo" src={pokemonLogo} alt="logo pokémon" />

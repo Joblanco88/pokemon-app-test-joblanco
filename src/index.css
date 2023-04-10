@@ -19,19 +19,6 @@ code {
   height: 100vh;
 }
 
-.header-home {
-  align-items: center;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-wrap: wrap;
-  height: 6vh;
-  justify-content: center;
-  margin: 0;
-  text-align: center;
-  width: 100%;
-}
-
 .button-home {
   align-items: center;
   display: flex;
@@ -74,30 +61,6 @@ code {
 
 /* List Styles - below */
 
-.header-list {
-  align-items: center;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-wrap: nowrap;
-  height: 6vh;
-  justify-content: space-around;
-  margin: 0;
-  text-align: center;
-  width: 100%;
-}
-
-#linkToHome {
-  color: white;
-  font-size: 28px;
-  font-weight: bold;
-  text-decoration: solid;
-}
-
-#heading-list {
-  font-size: 36px;
-}
-
 .hero-list {
   display: flex;
   flex-wrap: wrap;
@@ -127,4 +90,31 @@ code {
   margin: 5px;
   height: 50vh;
   width: 100%;
+}
+
+/* Header style */
+
+.header {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 6vh;
+  justify-content: space-around;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+#heading-title {
+  font-size: 30px;
+}
+
+#header-link {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: solid;
 }
