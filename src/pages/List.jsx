@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { fetchAllPokemon, fetchPokemon } from "@services/api";
-import blackHeart from "@images/blackHeartIcon.svg";
-import whiteHeart from "@images/whiteHeartIcon.svg";
 import { getLocalStorage, saveLocalStorage } from "@services/storage";
 import { UseCheckFavoritePoke, UseAlert } from "@helpers/listHelpers";
 import Context from "@context/Context";
 import Header from "@components/Header";
+import PokemonCard from "../components/PokemonCard";
 
 export default function List() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -68,38 +67,7 @@ export default function List() {
     <div className="hero-list">
       <Header title="Lista" />
       {pokemonList?.map((pokemon) => (
-        <div
-          className="pokemon-card"
-          data-testid="card-pokemon"
-          key={pokemon.name}
-        >
-          <img
-            className="pokemon-images"
-            src={pokemon.sprite}
-            alt={pokemon.name}
-          />
-          <h1>{pokemon.name}</h1>
-          <button
-            value={pokemon.name}
-            onClick={({ target }) => {
-              const localStorage = getLocalStorage("favorites");
-              if (!localStorage) saveLocalStorage("favorites", []);
-              setFavorites(target);
-            }}
-          >
-            <img
-              src={
-                globalState.favorites?.some(
-                  (favorite) => favorite.name === pokemon.name
-                )
-                  ? blackHeart
-                  : whiteHeart
-              }
-              alt={`Botão de favoritar do ${pokemon.name}`}
-            />
-            Favoritar
-          </button>
-        </div>
+        <PokemonCard pokemon={pokemon} pokemonList={pokemonList} />
       ))}
       <div className="favorites-list">
         {globalState.favorites?.map((pokemon) => (
@@ -109,7 +77,7 @@ export default function List() {
             key={pokemon.name}
           >
             <img
-              className="pokemon-images"
+              className="pokemon-image"
               src={pokemon.sprite}
               alt={pokemon.name}
             />
