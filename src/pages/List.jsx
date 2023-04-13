@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { fetchAllPokemon, fetchPokemon } from "@services/api";
-import { getLocalStorage, saveLocalStorage } from "@services/storage";
+import { getLocalStorage, saveLocalStorage } from "@helpers/storage";
 import Context from "@context/Context";
 import Header from "@components/Header";
 import PokemonCard from "@components/PokemonCard";
@@ -12,7 +12,7 @@ export default function List() {
 
   const getPokeWithIcons = async () => {
     const { results } = await fetchAllPokemon();
-    return await Promise.all(
+    return Promise.all(
       results.map(async (result) => {
         const {
           sprites: { other },

@@ -1,6 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import App from './App';
-import { renderWithRouter } from './services/renderWith';
+import App from '../App';
+import { renderWithRouter } from './renderWith';
 
 describe('renders learn react link', () => {
   const handleClick = jest.fn();

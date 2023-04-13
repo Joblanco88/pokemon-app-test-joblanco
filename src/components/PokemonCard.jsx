@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import blackHeart from "@images/blackHeartIcon.svg";
 import whiteHeart from "@images/whiteHeartIcon.svg";
-import { getLocalStorage, saveLocalStorage } from "@services/storage";
+import { getLocalStorage, saveLocalStorage } from "@helpers/storage";
 import { UseCheckFavoritePoke, UseAlert } from "@helpers/listHelpers";
 import Context from "@context/Context";
 
@@ -22,18 +22,18 @@ export default function PokemonCard({ pokemon, pokemonList }) {
   const setFavorites = ({ value, alt }) => {
     const localStorage = getLocalStorage("favorites");
     if (value) {
-      const boolean = UseCheckFavoritePoke(localStorage, value);
-      const filteredPoke = filterPokemon(boolean, localStorage, value);
+      const checkFavorite = UseCheckFavoritePoke(localStorage, value);
+      const filteredPoke = filterPokemon(checkFavorite, localStorage, value);
       saveLocalStorage("favorites", filteredPoke);
       setGlobalState({ favorites: filteredPoke });
-      UseAlert(!boolean);
+      UseAlert(!checkFavorite);
     } else {
       const pokemonName = alt.split(" ").pop();
-      const boolean = UseCheckFavoritePoke(localStorage, pokemonName);
-      const filteredPoke = filterPokemon(boolean, localStorage, pokemonName);
+      const checkFavorite = UseCheckFavoritePoke(localStorage, pokemonName);
+      const filteredPoke = filterPokemon(checkFavorite, localStorage, pokemonName);
       saveLocalStorage("favorites", filteredPoke);
       setGlobalState({ favorites: filteredPoke });
-      UseAlert(!boolean);
+      UseAlert(!checkFavorite);
     }
   };
 
